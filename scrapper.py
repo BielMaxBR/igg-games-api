@@ -17,23 +17,27 @@ def gamesearch(search):
     content = req_pes.content
 
     soup = BeautifulSoup(content, 'html.parser')
-
+    conteudo = []
     # print(soup.find_all(class_="uk-container"))
-    grid = soup.find("h3", class_=re.compile("uk-margin-medium-bottom"))
-    for post in grid.find_next(): #"a", id=re.compile('post')):        
-
-        thumb = str(post.find("img")
-        linkPost = str(post.find("a", class_="uk-link-reset")['href']).replace("https://", "https://www.")
-        name = str(post.find("a", class_="uk-link-reset").string)
-        details = []
-        HE = post.find("p", class_="uk-article-meta")
+    grid = soup.body.find("div", class_=re.compile("uk-width-expand"))
+    for post in grid.contents: #"a", id=re.compile('post')):        
         print(post)
-        for i in HE.find_all_next():
-            details += [i.string]
-        list += [thumb, linkPost, name, details] 
+        arquivo = open('post.txt', 'w')
+        conteudo.append(str(post)) 
+        arquivo.writelines(conteudo)
+        arquivo.close()
+        # thumb = str(post.find("img")
+        # linkPost = str(post.find("a", class_="uk-link-reset")['href']).replace("https://", "https://www.")
+        # name = str(post.find("a", class_="uk-link-reset").string)
+        # details = []
+        # HE = post.find("p", class_="uk-article-meta")
+        # print(post)
+        # for i in HE.find_all_next():
+        #     details += [i.string]
+        # list += [thumb, linkPost, name, details] 
 
-        for i in list:
-            print(list[list.index(i)])
+        # for i in list:
+        #     print(list[list.index(i)])
     
     return list
 # conectando no site
@@ -90,9 +94,9 @@ if req.status_code == 200:
     link_game = gamesearch(pesquisa)
     # link_download = linksearch(link_game)[0]
     # nome_download = linksearch(link_game)[1]
-    print(type(link_game))
-    for i in link_game:
-        print(link_game[link_game.index(i)])
+    # print(type(link_game))
+    # for i in link_game:
+    #     print(link_game[link_game.index(i)])
 
 
     # for i in nome_download:
