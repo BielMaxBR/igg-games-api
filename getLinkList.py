@@ -15,7 +15,6 @@ def getLinkList(game):
     title = str(Plink[0].string)
     link = Plink[2]
     if str(link).count('blue') != 0:
-        print(str(link).count('blue'))
         finalLink = str(link['href'])[str(link['href']).index('url=')+5:]
         str(finalLink)[1:]
         if str(finalLink)[:2].count(':/') != 0:
@@ -23,11 +22,7 @@ def getLinkList(game):
         else:
             finalLink = finalLink[2:]
     else:
-        print('adfly', str(link).count('blue'))
-        print('#'*60)
         finalLink = str(link['href'])
-    print('Link=', finalLink)
-    print('$'*60)
     # finalLink = link['href']
     game = {
       "title": title,
